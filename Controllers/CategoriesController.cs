@@ -33,7 +33,7 @@ namespace ElectronicsStore.Controllers {
             return NoContent();
         }
 
-        [HttpGet]
+        [HttpGet("get")]
         public async Task<ActionResult> GetByIdAsync([FromQuery] CategoryIdRequest request) {
             Category category = await categoriesService.FindByIdAsync(request.Id);
             if (category != null)
@@ -41,7 +41,7 @@ namespace ElectronicsStore.Controllers {
             return NotFound();
         }
 
-        [HttpPost]
+        [HttpPost("create")]
         public async Task<ActionResult> PostAsync([FromQuery] CategorySaveRequest request) {
             if (!ModelState.IsValid)
                 return BadRequest(new ErrorResponse { Error = ModelState.GetErrorMessages(), Status = false });
@@ -52,7 +52,7 @@ namespace ElectronicsStore.Controllers {
             return BadRequest(new ErrorResponse { Error = response.Message, Status = response.Status });
         }
 
-        [HttpPut]
+        [HttpPost("update")]
         public async Task<ActionResult> PutAsync([FromQuery] CategoryUpdateRequest request) {
             if (!ModelState.IsValid)
                 return BadRequest(new ErrorResponse { Error = ModelState.GetErrorMessages(), Status = false });
@@ -62,7 +62,7 @@ namespace ElectronicsStore.Controllers {
             return BadRequest(new ErrorResponse { Error = response.Message, Status = response.Status });
         }
 
-        [HttpDelete]
+        [HttpDelete("delete")]
         public async Task<ActionResult> DeleteAsync([FromQuery] CategoryIdRequest request) {
             bool status = await categoriesService.DeleteAsync(request.Id);
             if (status)

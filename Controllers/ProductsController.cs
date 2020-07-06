@@ -32,7 +32,7 @@ namespace ElectronicsStore.Controllers {
             return NoContent();
         }
 
-        [HttpGet]
+        [HttpGet("get")]
         public async Task<ActionResult> GetByIdAsync([FromQuery] ProductIdRequest request) {
             Product product = await productsService.FindByIdAsync(request.ProductId);
             if (product != null)
@@ -40,7 +40,7 @@ namespace ElectronicsStore.Controllers {
             return NotFound();
         }
 
-        [HttpPost, Consumes(contentType: "application/json", otherContentTypes: "multipart/form-data")]
+        [HttpPost("create"), Consumes(contentType: "application/json", otherContentTypes: "multipart/form-data")]
         public async Task<ActionResult> PostAsync([FromForm] ProductSaveRequest request) {
             if (!ModelState.IsValid)
                 return BadRequest(new ErrorResponse { Error = ModelState.GetErrorMessages(), Status = false });
@@ -51,7 +51,7 @@ namespace ElectronicsStore.Controllers {
             return BadRequest(new ErrorResponse { Error = response.Message, Status = response.Status });
         }
 
-        [HttpPut]
+        [HttpPost("update")]
         public async Task<ActionResult> PutAsync([FromQuery] ProductUpdateRequest request) {
             if (!ModelState.IsValid)
                 return BadRequest(new ErrorResponse { Error = ModelState.GetErrorMessages(), Status = false });
@@ -61,7 +61,7 @@ namespace ElectronicsStore.Controllers {
             return BadRequest(new ErrorResponse { Error = response.Message, Status = response.Status });
         }
 
-        [HttpDelete]
+        [HttpDelete("delete")]
         public async Task<ActionResult> DeleteAsync([FromQuery] ProductIdRequest request) {
             bool status = await productsService.DeleteAsync(request.ProductId);
             if (status)
