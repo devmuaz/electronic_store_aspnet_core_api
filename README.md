@@ -38,6 +38,8 @@ A well structured api built using the .Net core frameworks with some of the most
 
 ### Users:
 - [GET] api/v1/users/{username}
+- [POST] api/v1/users/update (FORM DATA)
+- [DELETE] api/v1/users/delete (QUERY)
 
 ### Auth:
 - [GET] api/v1/auth/me (HEADER AUTHORIZATION) (Bearer Token)
