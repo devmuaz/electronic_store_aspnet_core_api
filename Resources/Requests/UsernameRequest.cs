@@ -5,9 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace ElectronicsStore.Resources.Requests {
-    public class UserIdRequest {
+    public class UsernameRequest {
 
         [Required]
-        public Guid userId { get; set; }
+        public string username { get; set; }
     }
 }

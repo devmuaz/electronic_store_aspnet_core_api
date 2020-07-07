@@ -10,12 +10,12 @@ namespace ElectronicsStore.Domain.Repositories {
 
         public Task<IEnumerable<Category>> GetAllAsync();
 
-        public Task<Category> FindAsync(Guid id);
+        public Task<Category> FindByIdAsync(Guid id);
         
         public Task<Category> AddAsync(Category category);
 
-        public Task<Category> Update(Category category);
+        public Task<Category> UpdateAsync(Category category);
 
-        public Task<bool> Delete(Category category);
+        public Task<bool> DeleteAsync(Category category);
     }
 }

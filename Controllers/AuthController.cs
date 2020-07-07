@@ -43,7 +43,7 @@ namespace ElectronicsStore.Controllers {
             return Unauthorized();
         }
 
-        [HttpPost("logout")]
+        [HttpPost("signout")]
         public ActionResult Logout() {
             // Unimplemented Yet.
             return Ok();

@@ -14,5 +14,9 @@ namespace ElectronicsStore.Domain.Repositories {
         public Task<User> FindByIdAsync(Guid id);
 
         public Task<User> FindByUsernameAsync(string username);
+
+        public Task<User> UpdateAsync(User user);
+
+        public Task<bool> DeleteAsync(User user);
     }
 }

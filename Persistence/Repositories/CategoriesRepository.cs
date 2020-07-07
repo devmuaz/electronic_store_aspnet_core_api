@@ -17,7 +17,7 @@ namespace ElectronicsStore.Persistence.Repositories {
             return await context.categories.ToListAsync();
         }
 
-        public async Task<Category> FindAsync(Guid id) {
+        public async Task<Category> FindByIdAsync(Guid id) {
             return await context.categories.FindAsync(id);
         }
 
@@ -26,12 +26,12 @@ namespace ElectronicsStore.Persistence.Repositories {
             return (await context.SaveChangesAsync() > 0) ? result.Entity : null;
         }
 
-        public async Task<Category> Update(Category category) {
+        public async Task<Category> UpdateAsync(Category category) {
             var result = context.categories.Update(category);
             return (await context.SaveChangesAsync() > 0) ? result.Entity : null;
         }
 
-        public async Task<bool> Delete(Category category) {
+        public async Task<bool> DeleteAsync(Category category) {
             context.categories.Remove(category);
             return await context.SaveChangesAsync() > 0;
         }

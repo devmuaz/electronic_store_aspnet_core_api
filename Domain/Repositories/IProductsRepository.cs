@@ -12,8 +12,8 @@ namespace ElectronicsStore.Domain.Repositories {
 
         public Task<Product> AddAsync(Product product);
 
-        public Task<Product> Update(Product product);
+        public Task<Product> UpdateAsync(Product product);
 
-        public Task<bool> Delete(Product product);
+        public Task<bool> DeleteAsync(Product product);
     }
 }

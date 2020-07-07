@@ -36,8 +36,9 @@ namespace ElectronicsStore.Resources.Responses {
 
         public async Task<ProductStatusResponse> SaveAsync(ProductSaveRequest request, Product product) {
             try {
-                if ((await categoryRepository.FindAsync(request.CategoryId)) == null)
+                if ((await categoryRepository.FindByIdAsync(request.CategoryId)) == null)
                     return new ProductStatusResponse("Invald Category Id.");
+
                 for (int i = 0; i < request.Images.Count; i++)
                     product.Images.Add(new ImagePath {
                         Filename = await fileService.StoreImage(config.GetSection("ProductsImages").Value, request.Images[i])
@@ -63,7 +64,7 @@ namespace ElectronicsStore.Resources.Responses {
                 product.CategoryId = product.CategoryId;
                 product.ModifiedAt = DateTime.UtcNow;
 
-                Product updatedProduct = await productsRepository.Update(product);
+                Product updatedProduct = await productsRepository.UpdateAsync(product);
 
                 return new ProductStatusResponse(updatedProduct);
             } catch (Exception e) {
@@ -73,7 +74,9 @@ namespace ElectronicsStore.Resources.Responses {
 
         public async Task<bool> DeleteAsync(Guid id) {
             Product product = await productsRepository.FindAsync(id);
-            return await productsRepository.Delete(product);
+            if (product == null)
+                return false;
+            return await productsRepository.DeleteAsync(product);
         }
     }
 }

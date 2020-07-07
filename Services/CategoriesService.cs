@@ -22,7 +22,7 @@ namespace ElectronicsStore.System {
         }
 
         public async Task<Category> FindByIdAsync(Guid id) {
-            return await categoryRepository.FindAsync(id);
+            return await categoryRepository.FindByIdAsync(id);
         }
 
         public async Task<CategoryStatusResponse> SaveCategoryAsync(Category category) {
@@ -36,13 +36,13 @@ namespace ElectronicsStore.System {
 
         public async Task<CategoryStatusResponse> UpdateAsync(CategoryUpdateRequest request) {
             try {
-                Category category = await categoryRepository.FindAsync(request.Id);
+                Category category = await categoryRepository.FindByIdAsync(request.Id);
                 if (category == null)
                     return new CategoryStatusResponse("Invalid Category Id.");
                 category.CategoryName = request.CategoryName ?? category.CategoryName;
                 category.Description = request.Description ?? category.Description;
                 category.ModifiedAt = DateTime.UtcNow;
-                Category updatedCategory = await categoryRepository.Update(category);
+                Category updatedCategory = await categoryRepository.UpdateAsync(category);
                 return new CategoryStatusResponse(category);
             } catch (Exception e) {
                 return new CategoryStatusResponse(e.Message);
@@ -50,8 +50,10 @@ namespace ElectronicsStore.System {
         }
 
         public async Task<bool> DeleteAsync(Guid id) {
-            Category category = await categoryRepository.FindAsync(id);
-            return await categoryRepository.Delete(category);
+            Category category = await categoryRepository.FindByIdAsync(id);
+            if (category == null)
+                return false;
+            return await categoryRepository.DeleteAsync(category);
         }
     }
 }

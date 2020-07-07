@@ -29,5 +29,15 @@ namespace ElectronicsStore.Persistence.Repositories {
         public async Task<User> FindByUsernameAsync(string username) {
             return await context.users.FirstOrDefaultAsync(u => u.Username == username);
         }
+
+        public async Task<User> UpdateAsync(User user) {
+            var result = context.users.Update(user);
+            return (await context.SaveChangesAsync() > 0) ? result.Entity : null;
+        }
+
+        public async Task<bool> DeleteAsync(User user) {
+            context.users.Remove(user);
+            return await context.SaveChangesAsync() > 0;
+        }
     }
 }

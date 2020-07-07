@@ -28,12 +28,12 @@ namespace ElectronicsStore.Persistence.Repositories {
             return (await context.SaveChangesAsync() > 0) ? result.Entity : null;
         }
 
-        public async Task<Product> Update(Product product) {
+        public async Task<Product> UpdateAsync(Product product) {
             var result = context.products.Update(product);
             return (await context.SaveChangesAsync() > 0) ? result.Entity : null;
         }
 
-        public async Task<bool> Delete(Product product) {
+        public async Task<bool> DeleteAsync(Product product) {
             context.products.Remove(product);
             return await context.SaveChangesAsync() > 0;
         }

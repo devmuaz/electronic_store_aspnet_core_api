@@ -52,7 +52,7 @@ namespace ElectronicsStore.Controllers {
         }
 
         [HttpPost("update")]
-        public async Task<ActionResult> PutAsync([FromQuery] ProductUpdateRequest request) {
+        public async Task<ActionResult> UpdateAsync([FromQuery] ProductUpdateRequest request) {
             if (!ModelState.IsValid)
                 return BadRequest(new ErrorResponse { Error = ModelState.GetErrorMessages(), Status = false });
             ProductStatusResponse response = await productsService.UpdateAsync(request);
@@ -66,7 +66,7 @@ namespace ElectronicsStore.Controllers {
             bool status = await productsService.DeleteAsync(request.ProductId);
             if (status)
                 return Ok();
-            return NotFound();
+            return NotFound(new ErrorResponse { Error = "Product Not Found.", Status = status});
         }
     }
 }
