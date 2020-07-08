@@ -10,12 +10,13 @@ using ElectronicsStore.Extensions;
 using ElectronicsStore.Resources.Errors;
 using ElectronicsStore.Resources.Requests;
 using ElectronicsStore.Resources.Responses;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ElectronicsStore.Controllers {
 
-    [ApiController, Route("api/v1/[controller]")]
+    [ApiController, Route("api/v1/[controller]"), Authorize]
     public class UsersController : ControllerBase {
 
         private readonly IUsersService usersService;
@@ -26,7 +27,7 @@ namespace ElectronicsStore.Controllers {
             this.mapper = mapper;
         }
 
-        [HttpGet("{username}")]
+        [HttpGet("{username}"), AllowAnonymous]
         public async Task<ActionResult> GetUserByUsernameAsync(string username) {
             UserStatusResponse response = await usersService.FindUserByUsernameAsync(username);
             if (response.Status)

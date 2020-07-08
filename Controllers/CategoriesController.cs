@@ -6,6 +6,7 @@ using ElectronicsStore.Extensions;
 using ElectronicsStore.Resources;
 using ElectronicsStore.Resources.Errors;
 using ElectronicsStore.Resources.Requests;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace ElectronicsStore.Controllers {
 
-    [ApiController, Route("api/v1/[controller]")]
+    [ApiController, Route("api/v1/[controller]"), Authorize]
     public class CategoriesController : ControllerBase {
 
         private readonly ICategoriesService categoriesService;
@@ -25,7 +26,7 @@ namespace ElectronicsStore.Controllers {
             this.mapper = mapper;
         }
 
-        [HttpGet("all")]
+        [HttpGet("all"), AllowAnonymous]
         public async Task<ActionResult> GetAllAsync() {
             IEnumerable<Category> categories = await categoriesService.GetAllAsync();
             if (categories != null)
@@ -33,7 +34,7 @@ namespace ElectronicsStore.Controllers {
             return NoContent();
         }
 
-        [HttpGet("get")]
+        [HttpGet("get"), AllowAnonymous]
         public async Task<ActionResult> GetByIdAsync([FromQuery] CategoryIdRequest request) {
             Category category = await categoriesService.FindByIdAsync(request.Id);
             if (category != null)
