@@ -15,7 +15,10 @@ using System.Threading.Tasks;
 
 namespace ElectronicsStore.Controllers {
 
-    [ApiController, Route("api/v1/[controller]"), Authorize]
+    [Authorize]
+    [ApiController]
+    [ApiVersion("1")]
+    [Route("api/v{version:ApiVersion}/[controller]")]
     public class CategoriesController : ControllerBase {
 
         private readonly ICategoriesService categoriesService;
@@ -26,7 +29,8 @@ namespace ElectronicsStore.Controllers {
             this.mapper = mapper;
         }
 
-        [HttpGet("all"), AllowAnonymous]
+        [AllowAnonymous]
+        [HttpGet("all")]
         public async Task<ActionResult> GetAllAsync() {
             IEnumerable<Category> categories = await categoriesService.GetAllAsync();
             if (categories != null)
@@ -34,7 +38,8 @@ namespace ElectronicsStore.Controllers {
             return NoContent();
         }
 
-        [HttpGet("get"), AllowAnonymous]
+        [AllowAnonymous]
+        [HttpGet("get")]
         public async Task<ActionResult> GetByIdAsync([FromQuery] CategoryIdRequest request) {
             Category category = await categoriesService.FindByIdAsync(request.Id);
             if (category != null)

@@ -16,7 +16,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ElectronicsStore.Controllers {
 
-    [ApiController, Route("api/v1/[controller]"), Authorize]
+    [Authorize]
+    [ApiController]
+    [ApiVersion("1")]
+    [Route("api/v{version:ApiVersion}/[controller]")]
     public class UsersController : ControllerBase {
 
         private readonly IUsersService usersService;
@@ -27,7 +30,8 @@ namespace ElectronicsStore.Controllers {
             this.mapper = mapper;
         }
 
-        [HttpGet("{username}"), AllowAnonymous]
+        [AllowAnonymous]
+        [HttpGet("{username}")]
         public async Task<ActionResult> GetUserByUsernameAsync(string username) {
             UserStatusResponse response = await usersService.FindUserByUsernameAsync(username);
             if (response.Status)
@@ -35,7 +39,8 @@ namespace ElectronicsStore.Controllers {
             return NotFound(new ErrorResponse { Error = response.Message, Status = response.Status });
         }
 
-        [HttpPost("update"), Consumes(contentType: "application/json", otherContentTypes: "multipart/form-data")]
+        [HttpPost("update")]
+        [Consumes(contentType: "application/json", otherContentTypes: "multipart/form-data")]
         public async Task<ActionResult> UpdateAsync([FromForm] UserUpdateRequest request) {
             if (!ModelState.IsValid)
                 return BadRequest(new ErrorResponse { Error = ModelState.GetErrorMessages(), Status = false });

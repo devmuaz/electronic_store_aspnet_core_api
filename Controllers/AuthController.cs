@@ -19,7 +19,10 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace ElectronicsStore.Controllers {
 
-    [ApiController, Route("api/v1/[controller]"), Authorize]
+    [Authorize]
+    [ApiController]
+    [ApiVersion("1")]
+    [Route("api/v{version:ApiVersion}/[controller]")]
     public class AuthController : ControllerBase {
 
         private readonly IAuthService authService;
@@ -49,7 +52,8 @@ namespace ElectronicsStore.Controllers {
             return Ok();
         }
 
-        [AllowAnonymous, HttpPost("signin")]
+        [AllowAnonymous]
+        [HttpPost("signin")]
         public async Task<ActionResult> SignInAsync([FromForm] UserSignInRequest request) {
             User user = mapper.Map<UserSignInRequest, User>(request);
             AuthStatusResponse response = await authService.SignInAsync(user);
@@ -58,7 +62,8 @@ namespace ElectronicsStore.Controllers {
             return Unauthorized(new ErrorResponse { Error = response.Message, Status = response.Status });
         }
 
-        [AllowAnonymous, HttpPost("signup")]
+        [AllowAnonymous]
+        [HttpPost("signup")]
         [Consumes(contentType: "application/json", otherContentTypes: "multipart/form-data")]
         public async Task<ActionResult> SignUpAsync([FromForm] UserSignUpRequest request) {
             User user = mapper.Map<UserSignUpRequest, User>(request);

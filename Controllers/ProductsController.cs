@@ -13,8 +13,10 @@ using System.Threading.Tasks;
 
 namespace ElectronicsStore.Controllers {
 
-
-    [ApiController, Route("api/v1/[controller]"), Authorize]
+    [Authorize]
+    [ApiController]
+    [ApiVersion("1")]
+    [Route("api/v{version:ApiVersion}/[controller]")]
     public class ProductsController : ControllerBase {
 
         private readonly IProductsService productsService;
@@ -25,7 +27,8 @@ namespace ElectronicsStore.Controllers {
             this.mapper = mapper;
         }
 
-        [HttpGet("all"), AllowAnonymous]
+        [AllowAnonymous]
+        [HttpGet("all")]
         public async Task<ActionResult> GetAllAsync() {
             IEnumerable<Product> products = await productsService.GetAllAsync();
             if (products != null)
@@ -33,7 +36,8 @@ namespace ElectronicsStore.Controllers {
             return NoContent();
         }
 
-        [HttpGet("get"), AllowAnonymous]
+        [AllowAnonymous]
+        [HttpGet("get")]
         public async Task<ActionResult> GetByIdAsync([FromQuery] ProductIdRequest request) {
             Product product = await productsService.FindByIdAsync(request.ProductId);
             if (product != null)
@@ -41,7 +45,8 @@ namespace ElectronicsStore.Controllers {
             return NotFound();
         }
 
-        [HttpPost("create"), Consumes(contentType: "application/json", otherContentTypes: "multipart/form-data")]
+        [HttpPost("create")]
+        [Consumes(contentType: "application/json", otherContentTypes: "multipart/form-data")]
         public async Task<ActionResult> PostAsync([FromForm] ProductSaveRequest request) {
             if (!ModelState.IsValid)
                 return BadRequest(new ErrorResponse { Error = ModelState.GetErrorMessages(), Status = false });
