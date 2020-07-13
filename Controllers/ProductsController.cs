@@ -72,7 +72,7 @@ namespace ElectronicsStore.Controllers {
             bool status = await productsService.DeleteAsync(request.ProductId);
             if (status)
                 return Ok();
-            return NotFound(new ErrorResponse { Error = "Product Not Found.", Status = status});
+            return NotFound(new ErrorResponse { Error = "Product Not Found.", Status = status });
         }
     }
 }

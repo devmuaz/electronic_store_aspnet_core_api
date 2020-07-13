@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace ElectronicsStore.Domain.Services.Communication {
+﻿namespace ElectronicsStore.Domain.Services.Communication {
     public abstract class BaseStatusResponse<T> {
 
         public bool Status { get; private set; }

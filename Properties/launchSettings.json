@@ -16,7 +16,9 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "ancmHostingModel": "OutOfProcess"
+      "sqlDebugging": false,
+      "ancmHostingModel": "OutOfProcess",
+      "nativeDebugging": false
     },
     "ElectronicsStore": {
       "commandName": "IISExpress",

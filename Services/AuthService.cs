@@ -3,14 +3,10 @@ using ElectronicsStore.Domain.Models;
 using ElectronicsStore.Domain.Repositories;
 using ElectronicsStore.Domain.Services;
 using ElectronicsStore.Domain.Services.Communication;
-using ElectronicsStore.Resources;
 using ElectronicsStore.Resources.Requests;
 using ElectronicsStore.Resources.Responses;
 using ElectronicsStore.System;
 using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace ElectronicsStore.Services {

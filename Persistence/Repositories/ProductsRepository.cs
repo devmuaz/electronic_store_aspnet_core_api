@@ -1,12 +1,9 @@
 ﻿using ElectronicsStore.Domain.Models;
 using ElectronicsStore.Domain.Repositories;
 using ElectronicsStore.Persistence.Contexts;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace ElectronicsStore.Persistence.Repositories {

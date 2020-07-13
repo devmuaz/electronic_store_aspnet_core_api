@@ -1,9 +1,6 @@
 ﻿using ElectronicsStore.Domain.Models;
 using ElectronicsStore.Domain.Services.Communication;
 using ElectronicsStore.Resources.Requests;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace ElectronicsStore.Domain.Services {

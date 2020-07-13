@@ -1,11 +1,7 @@
-﻿using ElectronicsStore.Domain.Models;
-using ElectronicsStore.System;
-using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace ElectronicsStore.System {

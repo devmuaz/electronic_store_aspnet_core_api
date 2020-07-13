@@ -1,10 +1,4 @@
-﻿using ElectronicsStore.Domain.Models;
-using ElectronicsStore.Resources;
-using ElectronicsStore.Resources.Responses;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using ElectronicsStore.Resources.Responses;
 
 namespace ElectronicsStore.Domain.Services.Communication {
 

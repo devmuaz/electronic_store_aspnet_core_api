@@ -1,4 +1,3 @@
-using System;
 using AutoMapper;
 using ElectronicsStore.Domain.Repositories;
 using ElectronicsStore.Domain.Services;
@@ -10,13 +9,14 @@ using ElectronicsStore.Services;
 using ElectronicsStore.System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Versioning;
+using System;
 
 namespace ElectronicsStore {
     public class Startup {
@@ -35,7 +35,7 @@ namespace ElectronicsStore {
                 options.UseSqlServer(Configuration.GetConnectionString("StoreDbConnection"));
             });
 
-            // API Versining
+            // API Versioning
             services.AddApiVersioning(config => {
                 config.DefaultApiVersion = new ApiVersion(1, 0);
                 config.AssumeDefaultVersionWhenUnspecified = true;
@@ -72,6 +72,7 @@ namespace ElectronicsStore {
             if (env.IsDevelopment()) {
                 app.UseDeveloperExceptionPage();
             }
+
 
             app.UseSwagger();
 

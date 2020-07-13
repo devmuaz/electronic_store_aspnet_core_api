@@ -1,21 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using ElectronicsStore.Domain.Models;
 using ElectronicsStore.Domain.Services;
 using ElectronicsStore.Domain.Services.Communication;
-using ElectronicsStore.Resources;
 using ElectronicsStore.Resources.Errors;
 using ElectronicsStore.Resources.Requests;
 using ElectronicsStore.Resources.Responses;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
+using System.Threading.Tasks;
 
 namespace ElectronicsStore.Controllers {
 

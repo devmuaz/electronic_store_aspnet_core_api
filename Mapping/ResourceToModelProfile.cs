@@ -2,11 +2,6 @@
 using ElectronicsStore.Domain.Models;
 using ElectronicsStore.Resources;
 using ElectronicsStore.Resources.Requests;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ElectronicsStore.Mapping {
     public class ResourceToModelProfile : Profile {

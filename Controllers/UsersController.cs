@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using ElectronicsStore.Domain.Models;
 using ElectronicsStore.Domain.Services;
 using ElectronicsStore.Domain.Services.Communication;
@@ -11,8 +7,8 @@ using ElectronicsStore.Resources.Errors;
 using ElectronicsStore.Resources.Requests;
 using ElectronicsStore.Resources.Responses;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace ElectronicsStore.Controllers {
 
