@@ -4,6 +4,7 @@ using ElectronicsStore.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ElectronicsStore.Persistence.Repositories {
@@ -11,8 +12,12 @@ namespace ElectronicsStore.Persistence.Repositories {
 
         public ProductsRepository(AppDbContext context) : base(context) { }
 
-        public async Task<IEnumerable<Product>> GetAllAsync() {
-            return await context.products.Include(p => p.Category).Include(p => p.Images).ToListAsync();
+        public async Task<IEnumerable<Product>> GetAllAsync(int startIndex, int perPage) {
+            return await context.products
+                .Include(p => p.Category)
+                .Include(p => p.Images)
+                .Skip(startIndex)
+                .Take(perPage).ToListAsync();
         }
 
         public async Task<Product> FindAsync(Guid id) {

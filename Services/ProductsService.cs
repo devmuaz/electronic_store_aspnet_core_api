@@ -24,8 +24,8 @@ namespace ElectronicsStore.Resources.Responses {
             this.config = config;
         }
 
-        public async Task<IEnumerable<Product>> GetAllAsync() {
-            return await productsRepository.GetAllAsync();
+        public async Task<IEnumerable<Product>> GetAllAsync(int startIndex, int perPage) {
+            return await productsRepository.GetAllAsync(startIndex, perPage);
         }
 
         public async Task<Product> FindByIdAsync(Guid id) {

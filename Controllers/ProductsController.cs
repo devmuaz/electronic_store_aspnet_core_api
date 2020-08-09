@@ -29,8 +29,8 @@ namespace ElectronicsStore.Controllers {
 
         [AllowAnonymous]
         [HttpGet("all")]
-        public async Task<ActionResult> GetAllAsync() {
-            IEnumerable<Product> products = await productsService.GetAllAsync();
+        public async Task<ActionResult> GetAllAsync([FromQuery] PaginationRequest request) {
+            IEnumerable<Product> products = await productsService.GetAllAsync(request.startIndex, request.perPage);
             if (products != null)
                 return Ok(mapper.Map<IEnumerable<Product>, IEnumerable<ProductResponse>>(products));
             return NoContent();

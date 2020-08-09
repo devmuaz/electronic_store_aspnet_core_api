@@ -25,7 +25,6 @@ namespace ElectronicsStore.System {
 
         private string SetUniqueFilename(IFormFile file) {
             return Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
-
         }
     }
 }

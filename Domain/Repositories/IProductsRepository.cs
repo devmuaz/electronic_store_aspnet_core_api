@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 namespace ElectronicsStore.Domain.Repositories {
     public interface IProductsRepository {
 
-        public Task<IEnumerable<Product>> GetAllAsync();
+        public Task<IEnumerable<Product>> GetAllAsync(int startIndex, int perPage);
 
         public Task<Product> FindAsync(Guid id);
 

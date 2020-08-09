@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace ElectronicsStore.Domain.Services {
     public interface ICategoriesService {
 
-        public Task<IEnumerable<Category>> GetAllAsync();
+        public Task<IEnumerable<Category>> GetAllAsync(int startIndex, int perPage);
 
         public Task<Category> FindByIdAsync(Guid id);
 

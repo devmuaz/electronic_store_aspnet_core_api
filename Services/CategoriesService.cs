@@ -16,8 +16,8 @@ namespace ElectronicsStore.System {
             this.categoryRepository = categoryRepository;
         }
 
-        public async Task<IEnumerable<Category>> GetAllAsync() {
-            return await categoryRepository.GetAllAsync();
+        public async Task<IEnumerable<Category>> GetAllAsync(int startIndex, int perPage) {
+            return await categoryRepository.GetAllAsync(startIndex, perPage);
         }
 
         public async Task<Category> FindByIdAsync(Guid id) {
