@@ -59,5 +59,5 @@ The API was integrated with Swagger so it can be easily tested
 - https://localhost:5001/swagger/index.html
 
 ## For More
-- [Facebook](https://www.facebook.com/AbdulMuaz.Aqeel.SSP "AbdulMuaz Aqeel")
-- [Instagram](https://www.instagram.com/abdulmuaz_ssp "AbdulMuaz Aqeel")
+- [Facebook](https://www.facebook.com/devmuaz "AbdulMuaz Aqeel")
+- [Instagram](https://www.instagram.com/devmuaz "AbdulMuaz Aqeel")
